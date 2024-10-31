@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost:8080/api/v1";
 let map;
 let markers = [];
+let kmlLayer;
 
 const getAllProvince = () => {
     $.ajax({
@@ -36,7 +37,7 @@ const createTree = (data, searchTerm = '') => {
                 if (province.name.toLowerCase().includes(searchTerm)) {
                     html += `
                         <li>
-                            <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}">
+                            <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code="${province.code_name}">
                             ${province.name}
                         </li>
                     `;
@@ -54,7 +55,7 @@ const createTree = (data, searchTerm = '') => {
             region.provinces.forEach(province => {
                 html += `
                     <li>
-                        <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}">
+                        <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code="${province.code_name}">
                         ${province.name}
                     </li>
                 `;
@@ -71,7 +72,6 @@ const createTree = (data, searchTerm = '') => {
 const provinceTree = (provinces, searchTerm = '') => {
     const regionTree = document.getElementById('regionTree');
     regionTree.innerHTML = createTree(provinces, searchTerm);
-
 
     if (!searchTerm) {
         document.querySelectorAll('#regionTree > ul > li > span').forEach(span => {
@@ -95,7 +95,6 @@ const provinceTree = (provinces, searchTerm = '') => {
         });
     }
 
-    // Add event listeners for province checkboxes
     document.querySelectorAll('.province-checkbox').forEach(provinceCheckbox => {
         provinceCheckbox.addEventListener('change', function () {
             toggleMarker(this);
@@ -103,16 +102,28 @@ const provinceTree = (provinces, searchTerm = '') => {
     });
 };
 
-
 const toggleMarker = (checkbox) => {
     const lat = checkbox.getAttribute('data-lat');
     const lng = checkbox.getAttribute('data-lng');
     const name = checkbox.nextSibling.textContent.trim();
+    const code_name = checkbox.getAttribute('data-code');
 
     if (checkbox.checked) {
         const marker = L.marker([lat, lng]).addTo(map);
         marker.bindTooltip(name);
-        markers.push({ checkbox, marker });
+        marker.on('click', () => {
+            if (marker.selected) {
+                map.removeLayer(kmlLayer);
+                marker.selected = false;
+            } else {
+                if (kmlLayer) {
+                    map.removeLayer(kmlLayer);
+                }
+                kmlLayer = omnivore.kml(`./kml/${code_name}.kml`).addTo(map);
+                marker.selected = true;
+            }
+        });
+        markers.push({checkbox, marker});
     } else {
         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
         if (markerIndex !== -1) {
@@ -121,7 +132,6 @@ const toggleMarker = (checkbox) => {
         }
     }
 };
-
 
 const debounce = (func, delay) => {
     let debounceTimer;
@@ -147,10 +157,7 @@ const setupSearch = (data) => {
     }, 300));
 };
 
-
-// Lượng mưa
 function filterRainfall() {
     const year = document.getElementById('yearSelect').value;
     console.log('Filtering rainfall data for year:', year);
-
 }
