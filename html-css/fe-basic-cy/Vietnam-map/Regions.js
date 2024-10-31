@@ -103,21 +103,6 @@ const provinceTree = (provinces, searchTerm = '') => {
     });
 };
 
-// const toggleMarker = (checkbox) => {
-//     const lat = checkbox.getAttribute('data-lat');
-//     const lng = checkbox.getAttribute('data-lng');
-//
-//     if (checkbox.checked) {
-//         const marker = L.marker([lat, lng]).addTo(map);
-//         markers.push({ checkbox, marker });
-//     } else {
-//         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
-//         if (markerIndex !== -1) {
-//             map.removeLayer(markers[markerIndex].marker);
-//             markers.splice(markerIndex, 1);
-//         }
-//     }
-// };
 
 const toggleMarker = (checkbox) => {
     const lat = checkbox.getAttribute('data-lat');
@@ -126,7 +111,7 @@ const toggleMarker = (checkbox) => {
 
     if (checkbox.checked) {
         const marker = L.marker([lat, lng]).addTo(map);
-        marker.bindTooltip(name).openTooltip();
+        marker.bindTooltip(name);
         markers.push({ checkbox, marker });
     } else {
         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
@@ -161,3 +146,11 @@ const setupSearch = (data) => {
         provinceTree(filteredData, searchTerm);
     }, 300));
 };
+
+
+// Lượng mưa
+function filterRainfall() {
+    const year = document.getElementById('yearSelect').value;
+    console.log('Filtering rainfall data for year:', year);
+
+}
