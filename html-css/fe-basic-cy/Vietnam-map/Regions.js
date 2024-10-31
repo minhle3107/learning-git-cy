@@ -2,6 +2,9 @@ const BASE_URL = "http://localhost:8080/api/v1";
 let map;
 let markers = [];
 let kmlLayer;
+let provinces = []; // Define the provinces variable globally
+// let selectedYear = new Date().getFullYear(); // Default to the current year
+let selectedYear; // Default to the current year
 
 const getAllProvince = () => {
     $.ajax({
@@ -9,6 +12,7 @@ const getAllProvince = () => {
         type: "GET",
         success: function (data) {
             console.log("data", data);
+            provinces = data; // Assign the API response to the provinces variable
             provinceTree(data);
             setupSearch(data);
             initializeMap();
@@ -37,7 +41,7 @@ const createTree = (data, searchTerm = '') => {
                 if (province.name.toLowerCase().includes(searchTerm)) {
                     html += `
                         <li>
-                            <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code="${province.code_name}">
+                            <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
                             ${province.name}
                         </li>
                     `;
@@ -55,7 +59,7 @@ const createTree = (data, searchTerm = '') => {
             region.provinces.forEach(province => {
                 html += `
                     <li>
-                        <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code="${province.code_name}">
+                        <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
                         ${province.name}
                     </li>
                 `;
@@ -106,11 +110,21 @@ const toggleMarker = (checkbox) => {
     const lat = checkbox.getAttribute('data-lat');
     const lng = checkbox.getAttribute('data-lng');
     const name = checkbox.nextSibling.textContent.trim();
-    const code_name = checkbox.getAttribute('data-code');
+    const code_name = checkbox.getAttribute('data-code-name');
+    const province = provinces.flatMap(region => region.provinces).find(p => p.code_name === code_name);
+    const rainfallData = province.rainfallData.find(data => data.year === selectedYear);
 
     if (checkbox.checked) {
         const marker = L.marker([lat, lng]).addTo(map);
-        marker.bindTooltip(name);
+
+        if (selectedYear) {
+            marker.bindTooltip(`${name} - Rainfall in ${selectedYear}: ${rainfallData ? rainfallData.rainfall_amount : 'N/A'} mm`);
+
+        } else {
+            marker.bindTooltip(`${name}`);
+
+        }
+
         marker.on('click', () => {
             if (marker.selected) {
                 map.removeLayer(kmlLayer);
@@ -131,6 +145,13 @@ const toggleMarker = (checkbox) => {
             markers.splice(markerIndex, 1);
         }
     }
+};
+
+const filterRainfall = () => {
+    selectedYear = parseInt(document.getElementById('yearSelect').value, 10);
+    markers.forEach(({checkbox}) => {
+        toggleMarker(checkbox);
+    });
 };
 
 const debounce = (func, delay) => {
@@ -157,7 +178,4 @@ const setupSearch = (data) => {
     }, 300));
 };
 
-function filterRainfall() {
-    const year = document.getElementById('yearSelect').value;
-    console.log('Filtering rainfall data for year:', year);
-}
+document.getElementById('yearSelect').addEventListener('change', filterRainfall);
