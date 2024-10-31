@@ -26,10 +26,33 @@ const getAllProvince = () => {
 getAllProvince();
 
 const initializeMap = () => {
+
+    // const googleStreets = L.tileLayer('http://{s}.google.com/vt?lyrs=m&x={x}&y={y}&z={z}', {
+    //     maxZoom: 20,
+    //     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    // });
+    //
+    // const googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}', {
+    //     maxZoom: 20,
+    //     subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    // });
+    //
+    // const baseLayers = {
+    //     "Bản đồ mặc định": osm,
+    //     "Google Streets": googleStreets,
+    //     "Google Satellite": googleSat
+    // };
+    // const overlays = {};
+    //
+    // L.control.layers(baseLayers, overlays).addTo(map);
+
     map = L.map('map').setView([21.028511, 105.804817], 6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+
+
 };
 
 const createTree = (data, searchTerm = '') => {

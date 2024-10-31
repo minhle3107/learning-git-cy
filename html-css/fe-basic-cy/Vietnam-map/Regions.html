@@ -31,6 +31,11 @@
         #map {
             height: 100%;
         }
+
+         .card-header {
+             cursor: pointer;
+         }
+
     </style>
 </head>
 <body>
@@ -55,40 +60,49 @@
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-    <div class="position-sticky">
-        <div class="card my-2">
-            <div class="card-header">
-                Search Provinces
-            </div>
-            <div class="card-body">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search provinces...">
-                <div class="tree" id="regionTree"></div>
-            </div>
-        </div>
+            <div class="position-sticky">
+                <div class="card my-2">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#searchProvincesCard"
+                         aria-expanded="false" aria-controls="searchProvincesCard">
+                        Search Provinces
+                    </div>
+                    <div id="searchProvincesCard" class="collapse">
+                        <div class="card-body">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search provinces...">
+                            <div class="tree" id="regionTree"></div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="card my-2">
-            <div class="card-header">
-                Distance Calculation
+                <div class="card my-2">
+                    <div class="card-header" data-bs-toggle="collapse" data-bs-target="#distanceCalculationCard"
+                         aria-expanded="false" aria-controls="distanceCalculationCard">
+                        Distance Calculation
+                    </div>
+                    <div id="distanceCalculationCard" class="collapse">
+                        <div class="card-body">
+                            <select class="form-select me-2 my-2" id="startProvince">
+                                <option value="">---Select Start Province---</option>
+                            </select>
+                            <select class="form-select me-2 my-2" id="endProvince">
+                                <option value="">---Select End Province---</option>
+                            </select>
+                            <button class="btn btn-primary my-2" type="button" id="calculateDistanceBtn">Calculate Distance</button>
+                            <button class="btn btn-danger my-2" type="button" id="clearRouteBtn">Clear Route</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <select class="form-select me-2 my-2" id="startProvince">
-                    <option value="">---Select Start Province---</option>
-                </select>
-                <select class="form-select me-2 my-2" id="endProvince">
-                    <option value="">---Select End Province---</option>
-                </select>
-                <button class="btn btn-primary my-2" type="button" id="calculateDistanceBtn">Calculate Distance</button>
-                <button class="btn btn-danger my-2" type="button" id="clearRouteBtn">Clear Route</button>
-            </div>
-        </div>
-    </div>
-</nav>
+        </nav>
+
+
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
             <div id="map"></div>
         </main>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -96,5 +110,6 @@
 <script src="https://unpkg.com/togeojson"></script>
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 <script src="Regions.js"></script>
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
 </body>
 </html>
