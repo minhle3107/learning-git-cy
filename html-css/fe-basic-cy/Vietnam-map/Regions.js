@@ -124,7 +124,9 @@ const toggleMarker = (checkbox) => {
 
         marker.on('click', () => {
             if (marker.selected) {
-                map.removeLayer(kmlLayers[code_name]);
+                if (kmlLayers[code_name]) {
+                    map.removeLayer(kmlLayers[code_name]);
+                }
                 marker.selected = false;
             } else {
                 if (kmlLayers[code_name]) {
@@ -139,8 +141,10 @@ const toggleMarker = (checkbox) => {
         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
         if (markerIndex !== -1) {
             map.removeLayer(markers[markerIndex].marker);
-            map.removeLayer(kmlLayers[code_name]);
-            delete kmlLayers[code_name];
+            if (kmlLayers[code_name]) {
+                map.removeLayer(kmlLayers[code_name]);
+                delete kmlLayers[code_name];
+            }
             markers.splice(markerIndex, 1);
         }
     }
