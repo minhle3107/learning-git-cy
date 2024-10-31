@@ -1,7 +1,7 @@
 const BASE_URL = "http://localhost:8080/api/v1";
 let map;
 let markers = [];
-let kmlLayers = {}; // Store KML layers for each province
+let kmlLayers = {};
 let provinces = [];
 let selectedYear;
 
@@ -136,7 +136,7 @@ const toggleMarker = (checkbox) => {
                 marker.selected = true;
             }
         });
-        markers.push({ checkbox, marker });
+        markers.push({checkbox, marker});
     } else {
         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
         if (markerIndex !== -1) {
@@ -152,7 +152,11 @@ const toggleMarker = (checkbox) => {
 
 const filterRainfall = () => {
     selectedYear = parseInt(document.getElementById('yearSelect').value, 10);
-    markers.forEach(({ checkbox }) => {
+    markers.forEach(({checkbox, marker}) => {
+        map.removeLayer(marker);
+    });
+    markers = [];
+    document.querySelectorAll('.province-checkbox:checked').forEach(checkbox => {
         toggleMarker(checkbox);
     });
 };
