@@ -7,17 +7,14 @@ let selectedYear;
 
 const getAllProvince = () => {
     $.ajax({
-        url: `${BASE_URL}/administrative-regions`,
-        type: "GET",
-        success: function (data) {
+        url: `${BASE_URL}/administrative-regions`, type: "GET", success: function (data) {
             console.log("data", data);
             provinces = data;
             provinceTree(data);
             setupSearch(data);
             initializeMap();
             populateProvinceDropdowns(data); //
-        },
-        error: function (error) {
+        }, error: function (error) {
             console.log("error: ", error);
         }
     });
@@ -52,7 +49,6 @@ const initializeMap = () => {
     }).addTo(map);
 
 
-
 };
 
 const createTree = (data, searchTerm = '') => {
@@ -64,7 +60,7 @@ const createTree = (data, searchTerm = '') => {
                 if (province.name.toLowerCase().includes(searchTerm)) {
                     html += `
                         <li>
-                            <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
+                            <input type="checkbox" class="province-checkbox" data-code="${province.code}" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
                             ${province.name}
                         </li>
                     `;
@@ -82,7 +78,7 @@ const createTree = (data, searchTerm = '') => {
             region.provinces.forEach(province => {
                 html += `
                     <li>
-                        <input type="checkbox" class="province-checkbox" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
+                        <input type="checkbox" class="province-checkbox" data-code="${province.code}" data-lat="${province.latitude}" data-lng="${province.longitude}" data-code-name="${province.code_name}">
                         ${province.name}
                     </li>
                 `;
@@ -134,6 +130,8 @@ const toggleMarker = (checkbox) => {
     const lng = checkbox.getAttribute('data-lng');
     const name = checkbox.nextSibling.textContent.trim();
     const code_name = checkbox.getAttribute('data-code-name');
+    const code = checkbox.getAttribute('data-code');
+    console.log(code)
     const province = provinces.flatMap(region => region.provinces).find(p => p.code_name === code_name);
     const rainfallData = province.rainfallData.find(data => data.year === selectedYear);
 
@@ -141,10 +139,18 @@ const toggleMarker = (checkbox) => {
         const marker = L.marker([lat, lng]).addTo(map);
 
         if (selectedYear) {
-            marker.bindTooltip(`${name} - Rainfall in ${selectedYear}: ${rainfallData ? rainfallData.rainfall_amount : 'N/A'} mm`);
+            marker.bindPopup(`
+        ${name} - Rainfall in ${selectedYear}: ${rainfallData ? rainfallData.rainfall_amount : 'N/A'} mm
+        <br>
+        <a href="Chart.html?code=${code}" target="_blank">Details</a>
+    `);
         } else {
-            marker.bindTooltip(`${name}`);
+            marker.bindPopup(`${name}`);
         }
+
+        marker.on('mouseover', function () {
+            marker.openPopup();
+        });
 
         marker.on('click', () => {
             if (marker.selected) {
@@ -173,6 +179,10 @@ const toggleMarker = (checkbox) => {
         }
     }
 };
+
+function openPopup() {
+    map.openPopup();
+}
 
 const filterRainfall = () => {
     selectedYear = parseInt(document.getElementById('yearSelect').value, 10);
@@ -259,11 +269,7 @@ document.getElementById('calculateDistanceBtn').addEventListener('click', () => 
     }
 
     routeControl = L.Routing.control({
-        waypoints: [
-            L.latLng(lat1, lon1),
-            L.latLng(lat2, lon2)
-        ],
-        routeWhileDragging: true
+        waypoints: [L.latLng(lat1, lon1), L.latLng(lat2, lon2)], routeWhileDragging: true
     }).addTo(map);
 
     const distance = calculateDistance(lat1, lon1, lat2, lon2);
