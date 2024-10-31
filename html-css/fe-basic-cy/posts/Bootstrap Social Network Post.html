@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+    <!--  All snippets are MIT license http://bootdey.com/license -->
+    <title>social network multiple image post - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            margin-top: 20px;
+            background: #eee;
+        }
+
+        .profile .profile-img-list {
+            list-style-type: none;
+            margin: -0.1rem;
+            padding: 0;
+        }
+
+        .profile .profile-img-list .profile-img-list-item.main {
+            width: 50%;
+        }
+
+        .profile .profile-img-list:after, .profile .profile-img-list:before {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .profile .profile-img-list .profile-img-list-item {
+            width: 25%;
+            padding: 0.1rem;
+            float: left;
+        }
+
+        .profile .profile-img-list .profile-img-list-item .profile-img-list-link {
+            display: block;
+            padding-top: 75%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            max-width: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .profile .profile-img-list .profile-img-list-item .profile-img-list-link .profile-img-content:before, .profile .profile-img-list .profile-img-list-item .profile-img-list-link img:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .profile .profile-img-list .profile-img-list-item {
+            width: 25%;
+            padding: 0.1rem;
+            float: left;
+        }
+
+        .profile .profile-img-list:after, .profile .profile-img-list:before {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .profile .profile-img-list .profile-img-list-item.with-number .profile-img-number {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            color: #000;
+            font-size: 1.53125rem;
+            font-weight: 600;
+            line-height: 1.625rem;
+            margin-top: -0.765625rem;
+            text-align: center;
+            text-shadow: 2px 2px #fff;
+        }
+    </style>
+</head>
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- Container wrapper -->
+    <div class="container">
+        <a class="navbar-brand text mb-1">Navbar</a>
+
+        <!-- Toggle button -->
+        <button data-mdb-button-init class="navbar-toggler text-white" type="button" data-mdb-collapse-init data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+            </ul>
+            <!-- Left links -->
+
+            <ul class="navbar-nav d-flex flex-row">
+                <!-- Icons -->
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-facebook-f text-white"></i>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-instagram text-white"></i>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-linkedin text-white"></i>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-github text-white"></i>
+                    </a>
+                </li>
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-twitter text-white"></i>
+                    </a>
+                </li>
+                <!-- Icon dropdown -->
+                <li class="nav-item me-3 me-lg-0 dropdown">
+                    <a data-mdb-dropdown-init class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user text-white"></i>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" href="#">Action</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another action</a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+
+
+<div class="container profile">
+    <div class="row justify-content-center my-3">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <a href="#"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" width="50"
+                                         class="rounded-circle"/></a>
+                        <div class="flex-fill ps-2">
+                            <div class="fw-bold"><a href="#" class="text-decoration-none">Clyde Stanley</a> at <a
+                                    href="#" class="text-decoration-none">United States</a></div>
+                            <div class="small text-body text-opacity-50">May 5</div>
+                        </div>
+                    </div>
+
+                    <p>Business Trip</p>
+                    <div class="profile-img-list">
+                        <div class="profile-img-list-item main">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar6.png);"></span>
+                            </a>
+                        </div>
+                        <div class="profile-img-list-item main">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar7.png);"></span>
+                            </a>
+                        </div>
+                        <div class="profile-img-list-item">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar4.png);"></span>
+                            </a>
+                        </div>
+                        <div class="profile-img-list-item">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar3.png);"></span>
+                            </a>
+                        </div>
+                        <div class="profile-img-list-item">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar2.png);"></span>
+                            </a>
+                        </div>
+                        <div class="profile-img-list-item">
+                            <a href="#" data-lity="" class="profile-img-list-link">
+                                <span class="profile-img-content"
+                                      style="background-image: url(https://bootdey.com/img/Content/avatar/avatar1.png);"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="mb-1 opacity-1"/>
+                    <div class="d-flex mt-2">
+                        <div class="ms-auto">
+                            <a href="/v1/post/1" class="btn btn-primary">More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+._item_product {
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+._item_product:hover {
+    /*border-radius: 10px;*/
+    transform: scale(105%);
+    box-shadow: 5px 5px 10px grey;
+}

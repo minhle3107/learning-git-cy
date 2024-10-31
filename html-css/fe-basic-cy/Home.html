@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            height: 100px;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            z-index: 1000;
+        }
+
+        .logo {
+            justify-content: flex-start;
+            padding-left: 100px;
+        }
+
+        .login {
+            justify-content: flex-end;
+            padding-right: 100px;
+
+        }
+
+        .header .brand .link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .login .button {
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        .banner .image-banner {
+            width: 100%;
+            height: auto;
+            position: relative;
+
+        }
+
+        .filter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .slogan {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .slogan .title {
+            margin-bottom: 15px;
+        }
+
+        .slogan .sub-title {
+            margin-bottom: 20px;
+        }
+
+        .search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px
+
+        }
+
+        .search .current-location,
+        .search .date-range,
+        .search .search-hotels {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px 40px 20px 35px;
+            border: 1px solid #ccc;
+            position: relative;
+            background-size: 20px;
+            width: 200px;
+        }
+
+        .label-input-form {
+            color: white;
+        }
+
+        /*.search .current-location:focus,*/
+        /*.search .date-range:focus,*/
+        /*.search .search-hotels:focus {*/
+        /*    background-image: none;*/
+        /*}*/
+
+        .search .current-location::placeholder,
+        .search .date-range::placeholder,
+        .search .search-hotels::placeholder {
+            color: #aaa;
+            padding-left: 5px;
+        }
+
+        .search .current-location {
+            background-image: url('assets/images/booking/navigation.png');
+            background-position: left 10px center;
+            background-repeat: no-repeat;
+        }
+
+        .search .date-range {
+            /*background-image: url('navigation.png');*/
+            background-position: left 10px center;
+            background-repeat: no-repeat;
+        }
+
+        .search .search-hotels {
+            /*background-image: url('assets/images/booking/circle.png');*/
+            background-position: left 10px center;
+            background-repeat: no-repeat;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        .main-container {
+            padding: 0 100px;
+        }
+
+        .join-now {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid black;
+        }
+
+        .action-join {
+            justify-content: flex-start;
+            padding-left: 250px;
+        }
+
+        .image-join {
+            justify-content: flex-end;
+            padding-right: 250px;
+        }
+
+        .button-join-now {
+            background-color: black;
+            border: 1px solid black;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        .image-join-right {
+            width: 250px;
+            padding: 50px 0;
+        }
+
+        .our-locations {
+            border-bottom: 1px solid black;
+            padding: 20px 0;
+        }
+
+        .our-locations-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 30px;
+        }
+
+        /*.slider-container {*/
+        /*    position: relative;*/
+        /*    width: 100%;*/
+        /*}*/
+
+        /*.slider {*/
+        /*    padding: 50px 100px;*/
+        /*    display: flex;*/
+        /*    !*justify-content: space-between;*!*/
+        /*    overflow: hidden;*/
+        /*    gap: 10px*/
+        /*}*/
+
+        /*.shape-image {*/
+        /*    width: 300px;*/
+        /*    height: 400px;*/
+        /*    overflow: hidden;*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    position: relative;*/
+        /*    min-width: 20%;*/
+        /*    transition: transform 0.5s ease-in-out;*/
+        /*}*/
+
+        /*.slider-nav {*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    transform: translateY(-50%);*/
+        /*    background-color: rgba(0, 0, 0, 0.5);*/
+        /*    color: white;*/
+        /*    border: none;*/
+        /*    padding: 10px;*/
+        /*    cursor: pointer;*/
+        /*    z-index: 1000;*/
+        /*}*/
+
+        /*.slider-nav.prev {*/
+        /*    left: 10px;*/
+        /*}*/
+
+        /*.slider-nav.next {*/
+        /*    right: 10px;*/
+        /*}*/
+
+        /*.shape-image .img-slider {*/
+        /*    border-radius: 15px;*/
+        /*    width: 100%;*/
+        /*    height: 100%;*/
+        /*    object-fit: cover;*/
+        /*}*/
+
+        /*.location-text {*/
+        /*    background-color: black;*/
+        /*    color: white;*/
+        /*    border-radius: 5px 5px 15px 5px;*/
+        /*    padding: 5px 30px;*/
+        /*    position: absolute;*/
+        /*    bottom: 0;*/
+        /*    right: 0;*/
+        /*    margin: 0;*/
+        /*}*/
+
+        /*.slider-container {*/
+        /*    position: relative;*/
+        /*    width: 100%;*/
+        /*}*/
+
+        /*.slider {*/
+        /*    padding: 50px 100px;*/
+        /*    display: flex;*/
+        /*    overflow: hidden;*/
+        /*    gap: 10px;*/
+        /*}*/
+
+        /*.shape-image {*/
+        /*    width: 300px;*/
+        /*    height: 400px;*/
+        /*    overflow: hidden;*/
+        /*    display: flex;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    position: relative;*/
+        /*    min-width: 20%;*/
+        /*    transition: transform 0.5s ease-in-out;*/
+        /*}*/
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden; /* Ensure overflow is hidden */
+        }
+
+        .slider {
+            display: flex;
+            gap: 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .shape-image {
+            flex: 0 0 auto; /* Prevent flex-grow */
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .slider-nav.prev {
+            left: 10px;
+        }
+
+        .slider-nav.next {
+            right: 10px;
+        }
+
+        .img-slider {
+            border-radius: 15px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-text {
+            background-color: black;
+            color: white;
+            border-radius: 5px 5px 15px 5px;
+            padding: 5px 30px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 0;
+        }
+
+        .faq {
+            padding: 20px 100px;
+        }
+
+        .faq-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shape-faq {
+            background-color: black;
+            border: 1px solid black;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .faq-icon-open {
+            width: 20px;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .shape-icon-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .icon-footer {
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--Start Header-->
+<nav class="header">
+    <div class="logo">
+        <h1 class="brand"><a href="Home.html" class="link">Prime Hotels</a></h1></div>
+    <div class="login">
+        <button class="button">Login</button>
+    </div>
+</nav>
+<!--End Header-->
+
+<!--Start Banner-->
+<div class="banner">
+    <!--    Start Background-->
+    <div>
+        <img class="image-banner" src="assets/images/booking/lifestyle-people-living-camping.jpg" alt="">
+    </div>
+    <!--    End Background-->
+
+    <!--    Start Info Search-->
+
+    <div class="filter">
+        <div class="slogan">
+            <h1 class="title">Experience The Difference</h1>
+            <h3 class="sub-title">Plan.Book.Travel</h3>
+        </div>
+        <!--        <form action="">-->
+        <!--            <div class="search">-->
+        <!--                <div>-->
+        <!--                    <input type="text" class="current-location" placeholder="Current Location" name="province" required>-->
+        <!--                </div>-->
+        <!--                <div>-->
+        <!--                    <input type="date" class="date-range" data-placeholder="28 March - 31 March" name="check-in-date" required>-->
+        <!--                </div>-->
+        <!--                <div>-->
+        <!--                    <input type="date" class="date-range" data-placeholder="28 March - 31 March" name="check-out-date" required>-->
+        <!--                </div>-->
+        <!--                <div>-->
+        <!--                    <input type="submit" class="search-hotels" placeholder="Search Hotels" value="Search">-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </form>-->
+
+        <form action="/" method="POST">
+            <div class="search">
+                <div>
+                    <label for="" class="label-input-form">Current Location</label>
+                    <select name="" id="" class="current-location">
+                        <option value="">Choose Province</option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>
+<!--                    <input type="text" id="current-location" class="current-location" placeholder="Current Location"-->
+<!--                           name="province" required>-->
+                </div>
+                <div>
+                    <label for="check-in-date" class="label-input-form">Check-in Date</label>
+                    <input type="date" id="check-in-date" class="date-range" data-placeholder="28 March - 31 March"
+                           name="check-in-date" required>
+                </div>
+                <div>
+                    <label for="check-out-date" class="label-input-form">Check-out Date</label>
+                    <input type="date" id="check-out-date" class="date-range" data-placeholder="28 March - 31 March"
+                           name="check-out-date" required>
+                </div>
+                <div>
+                    <label for="search-hotels" class="label-input-form">Search Hotels</label>
+                    <input type="submit" id="search-hotels" class="search-hotels" value="Search">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!--    End Info Search-->
+</div>
+<!--End Banner-->
+
+<!--Start Join Now-->
+<div class="join-now">
+    <div class="action-join">
+        <h1>Become a Member</h1>
+        <p>Exclusive offers, rate and locations</p>
+        <button class="button-join-now">Join Now</button>
+    </div>
+    <div class="image-join">
+        <img src="assets/images/booking/fl2l_bsz9_210525.jpg" alt="" class="image-join-right">
+    </div>
+</div>
+<!--End Join Now-->
+
+<!--Start Our Locations-->
+<div class="our-locations">
+    <div class="our-locations-title">
+        <h1>Our Locations</h1>
+    </div>
+    <!--    Start slider-->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="shape-image">
+                <img src="assets/images/booking/view-luxurious-hotel-interior-space.jpg" alt="" class="img-slider">
+                <p class="location-text">Hà Nội</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-slider">
+                <p class="location-text">Quảng Ninh</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/booking/view-luxurious-hotel-interior-space.jpg" alt="" class="img-slider">
+                <p class="location-text">Hải Dương</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-slider">
+                <p class="location-text">Bắc Giang</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-slider">
+                <p class="location-text">Bắc Ninh</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-slider">
+                <p class="location-text">Hưng Yên</p>
+            </div>
+            <div class="shape-image">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-slider">
+                <p class="location-text">Sài Gòn</p>
+            </div>
+        </div>
+        <button class="slider-nav prev">&#10094;</button>
+        <button class="slider-nav next">&#10095;</button>
+    </div>
+    <!--    End slider-->
+</div>
+<!--End Our Locations-->
+
+
+<!--Start FAQ-->
+<div class="faq">
+    <div class="faq-title">
+        <h1>FAQ's</h1>
+    </div>
+
+    <div>
+        <div class="shape-faq">
+            <p>What is your policy regarding cancellations?</p>
+            <img src="assets/images/booking/right-arrow.png" alt="" class="faq-icon-open">
+        </div>
+        <div class="shape-faq">
+            <p>How do I know that my reservation is confirmed?</p>
+            <img src="assets/images/booking/right-arrow.png" alt="" class="faq-icon-open">
+        </div>
+        <div class="shape-faq">
+            <p>Top Destinations</p>
+            <img src="assets/images/booking/right-arrow.png" alt="" class="faq-icon-open">
+        </div>
+        <div class="shape-faq">
+            <p>Our Company</p>
+            <img src="assets/images/booking/right-arrow.png" alt="" class="faq-icon-open">
+        </div>
+    </div>
+</div>
+<!--End FAQ-->
+
+
+<!--Start footer-->
+
+<div class="footer">
+    <div class="shape-icon-footer">
+        <img src="assets/images/booking/instagram.png" alt="" class="icon-footer">
+        <img src="assets/images/booking/facebook.png" alt="" class="icon-footer">
+        <img src="assets/images/booking/twitter.png" alt="" class="icon-footer">
+    </div>
+    <p>@All Right Reserved</p>
+</div>
+
+<!--End footer-->
+
+<script>
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.shape-image');
+    const prevButton = document.querySelector('.slider-nav.prev');
+    const nextButton = document.querySelector('.slider-nav.next');
+    let currentIndex = 0;
+
+    // Clone the first few slides and append them to the end
+    slides.forEach((slide, index) => {
+        if (index < 6) { // Adjust the number of clones as needed
+            const clone = slide.cloneNode(true);
+            slider.appendChild(clone);
+        }
+    });
+
+    function showSlide(index) {
+        const slideWidth = slides[0].clientWidth;
+        const totalSlides = slides.length;
+
+        if (index >= totalSlides) {
+            currentIndex = 0;
+            slider.style.transition = 'none';
+            slider.style.transform = `translateX(0)`;
+            setTimeout(() => {
+                slider.style.transition = 'transform 0.5s ease-in-out';
+                showSlide(currentIndex + 1);
+            }, 0);
+        } else if (index < 0) {
+            currentIndex = totalSlides - 1;
+            slider.style.transition = 'none';
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            setTimeout(() => {
+                slider.style.transition = 'transform 0.5s ease-in-out';
+                showSlide(currentIndex - 1);
+            }, 0);
+        } else {
+            currentIndex = index;
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+    }
+
+    prevButton.addEventListener('click', () => {
+        showSlide(currentIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+        showSlide(currentIndex + 1);
+    });
+
+    // Initialize the slider
+    showSlide(currentIndex);
+</script>
+</body>
+</html>

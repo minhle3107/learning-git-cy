@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+
+        /** {*/
+        /*    padding: 0;*/
+        /*    margin: 0;*/
+        /*}*/
+
+        ._header {
+            display: flex;
+            justify-content: space-between;
+            background-color: beige;
+        }
+
+        ._logo {
+            margin: 21px 0 14px 101px;
+        }
+
+        ._logo .image {
+            width: 100px;
+            cursor: pointer;
+        }
+
+
+        ._categories {
+            justify-content: end;
+            width: 100%;
+            display: flex;
+            gap: 8px;
+
+        }
+
+        .item {
+            font-size: 20px;
+            cursor: pointer;
+            padding: 0 20px 0 20px;
+            color: grey;
+        }
+
+        .active {
+            color: black;
+        }
+
+
+        #main-container {
+            margin: 100px 100px;
+        }
+
+
+        ._content {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            gap: 20px
+        }
+
+        ._info {
+            width: 40%;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        ._info ._title {
+            font-size: 40px;
+            color: #553C1C;
+        }
+
+        ._info ._description {
+            color: #553C1C;
+            /*inline-height: 20px;*/
+            padding: 5px 0;
+            line-height: 40px;
+        }
+
+        ._image {
+            width: 60%;
+            margin: 0 0;
+            text-align: center;
+            padding-right: 0;
+        }
+
+        ._content ._image ._detail {
+            width: 650px;
+
+
+        }
+    </style>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+<!--start header-->
+<div class="_header">
+    <div class="_logo">
+        <!--image-->
+        <img src="./assets/images/image%2028@2x.svg" alt="" class="image">
+    </div>
+    <div class="_categories">
+        <!--        <ul>-->
+        <!--            <li><a href="">Introduction</a></li>-->
+        <!--            <li><a href="">User Research</a></li>-->
+        <!--            <li><a href="">User Analytics</a></li>-->
+        <!--            <li><a href="">Out Web</a></li>-->
+        <!--            <li><a href="">Planning</a></li>-->
+        <!--        </ul>-->
+        <h5 class="item active" onclick="getCategory(event, 0)">Introduction</h5>
+        <h5 class="item" onclick="getCategory(event, 1)">Products</h5>
+        <h5 class="item" onclick="getCategory(event, 2)">User Analytics</h5>
+        <h5 class="item" onclick="getCategory(event, 3)">Out Web</h5>
+        <h5 class="item" onclick="getCategory(event, 4)">Planning</h5>
+    </div>
+</div>
+<!--end header-->
+
+<div id="main-container">
+
+    <!--Start content-->
+
+    <div class="_content">
+
+
+        <div class="_info">
+            <h1 class="_title">Lợi ích của cà phê</h1>
+            <p class="_description">Trong cafe có rất nhiều caffeine là một chất có rất nhiều tác dụng tốt với cơ thể,
+                đồng thời các loại
+                khoáng chất và hợp chất có lợi cũng đem lại cho người uống cafe thường xuyên nhiều lợi ích.</p>
+            <p class="_description">Nói về tác động có lợi của cafe, người ta có thể kể ra hàng loạt hạng mục như: chống
+                buồn ngủ, giúp tinh
+                thần sảng khoái, thoải mái hơn, ngăn ngừa ung thư, lão hóa, kéo dài tuổi thọ, làm đẹp, giảm cân,… Và rất
+                nhiều lợi ích khác</p>
+        </div>
+
+        <div class="_image">
+            <img src="./assets/images/image%2030.svg" alt="" class="_detail">
+        </div>
+
+
+    </div>
+
+    <!--End content-->
+</div>
+</body>
+<script src="./assets/js/index.js"></script>
+</html>

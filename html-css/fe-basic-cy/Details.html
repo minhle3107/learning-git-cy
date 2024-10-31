@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            height: 100px;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            z-index: 1000;
+        }
+
+        .logo {
+            justify-content: flex-start;
+            padding-left: 100px;
+        }
+
+        .login {
+            justify-content: flex-end;
+            padding-right: 100px;
+
+        }
+
+        .header .brand .link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .login .button {
+            background-color: black;
+            border: 1px solid white;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .shape-icon-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .icon-footer {
+            width: 30px;
+        }
+
+
+        .main-container {
+            padding: 0 100px;
+        }
+
+        .info-hotel-header {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .name-hotel-header {
+            margin: 5px 0;
+        }
+
+        .ratting-header {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ratting-icon {
+            width: 15px;
+        }
+
+        .shape-image {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            height: 500px;
+        }
+
+        .left-image, .right-image {
+            flex: 1;
+            height: 100%;
+        }
+
+        .left-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .left-image .img-fill {
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .right-image {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .right-image-top, .right-image-bottom {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .img-right-fill {
+            border-radius: 20px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-room-type {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .services, .room-type {
+            flex: 1;
+            border-radius: 20px;
+            border: 1px solid #333;
+            box-shadow: 1px 1px 5px grey;
+            /*height: 300px;*/
+            padding: 20px 20px;
+        }
+
+        .facilities {
+            font-weight: normal;
+            font-size: 20px;
+        }
+
+        .shape-service {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .icon-service {
+            width: 15px;
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #333;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .info-check {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            height: 100%;
+            overflow: hidden;
+            align-items: center;
+            text-align: center;
+        }
+
+        .text-info {
+            font-size: 13px;
+            font-weight: lighter;
+        }
+
+        .button-reserve {
+            background-color: black;
+            padding: 20px 0;
+            color: white;
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .desc-proceed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            margin: 5px 0;
+        }
+
+        .number-night, .tax, .total-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .focus-text {
+            font-weight: bolder;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 20px
+        }
+
+        .number-rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 10%;
+            background-color: darkseagreen;
+            padding: 50px 50px;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .text-rating {
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .details-rating {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 80%;
+        }
+
+        .details-rating .shape-pro-rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .process-rating-5 {
+            background-color: darkgreen;
+            width: 80%;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .process-rating-4 {
+            background-color: greenyellow;
+            width: 10%;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .process-rating-3 {
+            background-color: orangered;
+            width: 5%;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .process-rating-2 {
+            background-color: orange;
+            width: 3%;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .process-rating-1 {
+            background-color: red;
+            width: 2%;
+            height: 6px;
+            border-radius: 5px;
+        }
+
+        .comment {
+            margin: 10px 0 30px 0;
+        }
+
+        .shape-comment {
+            display: flex;
+            align-items: center;
+            border-radius: 20px;
+            border: 1px solid gray;
+            padding: 20px 10px;
+            margin: 6px 0;
+        }
+
+        .rating-user {
+            justify-content: flex-start;
+            background-color: darkseagreen;
+            padding: 10px 10px;
+            margin: 0 20px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .details-comment {
+            margin-left: 10px;
+        }
+
+        .details-comment h5, p {
+            margin: 0;
+        }
+
+        .button-real-reviews {
+            width: 100%;
+            padding: 15px 0;
+            background-color: white;
+            border: 1px solid gray;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .shape-info-hotel {
+            margin: 20px 0;
+            padding: 0;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            background-color: #fff;
+            font-size: 16px;
+            color: #333;
+            width: 100%;
+            display: flex;
+        }
+
+        .shape-thumbnail {
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .shape-thumbnail .img-thumbnail {
+            border-radius: 15px 0 0 15px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .info-hotel {
+            padding: 5px 20px 5px 20px;
+            width: 100%;
+        }
+
+        .name-hotel {
+            margin: 5px 0;
+        }
+
+        .ratting {
+            display: flex;
+            /*justify-content: space-between;*/
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ratting-icon {
+            width: 15px;
+        }
+
+        .services {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .shape-service {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 5px
+        }
+
+        .icon-service {
+            width: 15px;
+        }
+
+        .shape-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            /*flex-direction: column;*/
+            align-items: center;
+            text-align: center;
+            gap: 50px;
+        }
+
+        .details-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px
+        }
+
+        .price-number {
+            margin: 0;
+        }
+
+        .original-price {
+            text-decoration: line-through
+        }
+
+        .atc-details {
+            background-color: black;
+            border: 1px solid black;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 30px;
+            cursor: pointer;
+        }
+
+        .shape-sale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .text-sale {
+            color: red;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .sale-icon {
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<!--Start Header-->
+<nav class="header">
+    <div class="logo">
+        <h1 class="brand"><a href="Home.html" class="link">Prime Hotels</a></h1>
+    </div>
+    <div class="login">
+        <button class="button">Login</button>
+    </div>
+</nav>
+<!--End Header-->
+
+<!--Start content-->
+<div class="main-container">
+    <!--    Start title-->
+    <div class="info-hotel-header">
+        <div>
+            <h1 class="name-hotel-header">Hotel Mountain</h1>
+            <p>Số 8 Tôn Thất Thuyết</p>
+        </div>
+        <div class="ratting-header">
+            <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+            <span>4.7 (99 Reviews)</span>
+        </div>
+    </div>
+    <!--    End title-->
+
+    <!--    Start Image-->
+    <div class="shape-image">
+        <!--        left-->
+        <div class="left-image">
+            <img src="hotel-1.jpg" alt="" class="img-fill">
+        </div>
+        <!--        right-->
+        <div class="right-image">
+            <div class="right-image-top">
+                <img src="hotel-2.jpg" alt="" class="img-right-fill">
+            </div>
+            <div class="right-image-bottom">
+                <img src="hotel-3.jpg" alt="" class="img-right-fill">
+            </div>
+        </div>
+    </div>
+    <!--    End Image-->
+
+    <!--    Start Info-->
+    <div class="service-room-type">
+        <div class="services">
+            <span class="facilities">Facilities</span>
+            <div class="service-bottom">
+                <div class="shape-service">
+                    <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                    <span>Room Services</span>
+                </div>
+                <div class="shape-service">
+                    <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                    <span>Restaurant</span>
+                </div>
+                <div class="shape-service">
+                    <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                    <span>Spa</span>
+                </div>
+                <div class="shape-service">
+                    <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                    <span>Parking</span>
+                </div>
+            </div>
+        </div>
+        <div class="room-type">
+            <form action="">
+                <div>
+                    <span>$100 per night</span>
+                    <input type="hidden" name="" value="99">
+                </div>
+                <div class="timeline">
+                    <div class="info-check">
+                        <span class="text-info">CHECK-IN</span>
+<!--                        <span>28/03/2024</span>-->
+                        <input type="date" name="" class="text-info">
+<!--                        <input type="hidden" name="" value="28/03/2024">-->
+                    </div>
+                    <div class="info-check">
+                        <span class="text-info">CHECK-OUT</span>
+<!--                        <span class="text-info">31/03/2024</span>-->
+                        <input type="date" name="" class="text-info">
+                    </div>
+                    <div class="info-check">
+                        <span class="text-info">GUESTS</span>
+                        <span class="text-info">2 guest</span>
+                        <input type="hidden" name="" value="2">
+                    </div>
+                </div>
+                <div class="reserve">
+                    <button type="submit" class="button-reserve">Reserve</button>
+                </div>
+                <span class="desc-proceed">Click above to proceed</span>
+                <div class="number-night">
+                    <div>
+                        <span class="focus-text">$100</span><span class="focus-text"> *</span><span
+                            class="focus-text"> 4</span><span> nights</span>
+                        <input type="hidden" value="99">
+                        <input type="hidden" value="4">
+
+                    </div>
+                    <div>
+                        <span class="focus-text">$400</span>
+                        <input type="hidden" value="400">
+                    </div>
+                </div>
+                <div class="tax">
+                    <div>
+                        <span>Tax and Hospitality fees (10%)</span>
+                        <input type="hidden" value="0.1">
+                    </div>
+                    <div>
+                        <span class="focus-text">$40</span>
+                        <input type="hidden" value="40">
+                    </div>
+                </div>
+                <hr>
+                <div class="total-price">
+                    <div>
+                        <span>Total price after tax</span>
+                    </div>
+                    <div>
+                        <span class="focus-text">$440</span>
+                        <input type="hidden" value="440">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--    End Info-->
+    <hr>
+
+    <!--    Start Ratting-->
+    <div>
+        <h3>Rating and Reviews</h3>
+        <div class="rating">
+            <div class="number-rating">
+                <div class="text-rating">
+                    <span>4.8</span><span>/5</span>
+                </div>
+            </div>
+            <div class="details-rating">
+                <div class="shape-pro-rating">
+                    <span>5</span><span class="process-rating-5"></span><span>80%</span>
+                </div>
+                <div class="shape-pro-rating">
+                    <span>4</span><span class="process-rating-4"></span><span>10%</span>
+                </div>
+                <div class="shape-pro-rating">
+                    <span>3</span><span class="process-rating-3"></span><span>5%</span>
+                </div>
+                <div class="shape-pro-rating">
+                    <span>2</span><span class="process-rating-2"></span><span>3%</span>
+                </div>
+                <div class="shape-pro-rating">
+                    <span>1</span><span class="process-rating-1"></span><span>2%</span>
+                </div>
+            </div>
+        </div>
+        <!--        Start comment-->
+        <div class="comment">
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div class="shape-comment">
+                <div class="rating-user">
+                    <span>5</span><span>/5</span>
+                </div>
+                <div class="details-comment">
+                    <h5>Minh Le</h5>
+                    <p>2 Day Ago</p>
+                    <p>Lorem ipsum dolor sit amet lorem. Sed diam magna eirmod duo et sanctus.</p>
+                </div>
+            </div>
+            <div>
+                <button class="button-real-reviews">Read All Reviews</button>
+            </div>
+        </div>
+
+        <!--        End comment-->
+
+    </div>
+    <!--    End Ratting-->
+    <hr>
+</div>
+<!--End content-->
+
+<!--Start Similar properties-->
+<div class="main-container">
+    <h1>Similar properties</h1>
+
+    <!--    Start Hotels-->
+    <div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/booking/hotel.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/Coffee%20beans%20spilled%20sack.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/booking/hotel.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/booking/hotel.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/booking/hotel.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+        <div class="shape-info-hotel">
+            <!--            Thumbnail-->
+
+            <div class="shape-thumbnail">
+                <img src="assets/images/booking/hotel.jpg" alt="" class="img-thumbnail">
+            </div>
+            <!--                End Thumbnail-->
+
+            <!--            Details-->
+            <div class="info-hotel">
+                <h1 class="name-hotel">Hotel Mountain</h1>
+                <p>Số 8 Tôn Thất Thuyết</p>
+                <div class="ratting">
+                    <img src="assets/images/booking/favorite.png" alt="" class="ratting-icon">
+                    <span>4.7 (99 Reviews)</span>
+                </div>
+                <!--                services-->
+                <div class="services">
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Room Services</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Restaurant</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Spa</span>
+                    </div>
+                    <div class="shape-service">
+                        <img src="assets/images/booking/checked.png" alt="" class="icon-service">
+                        <span>Parking</span>
+                    </div>
+                </div>
+                <!--                end services-->
+
+                <div class="shape-price">
+                    <div class="price">
+                        <div>
+                            <div class="details-price">
+                                <h1 class="price-number">$99</h1>
+                                <span class="original-price">$1200</span>
+                            </div>
+                            <div>
+                                <span>pre room/night</span>
+                            </div>
+                        </div>
+                        <div class="shape-sale">
+                            <span class="text-sale">93% Off</span>
+                            <img src="assets/images/booking/shopping.png" alt="" class="sale-icon">
+                        </div>
+                    </div>
+                    <div class="button-details">
+                        <button class="atc-details">View More Details</button>
+                    </div>
+                </div>
+
+            </div>
+            <!--            End Details-->
+        </div>
+
+    </div>
+    <!--    Start Hotels-->
+
+</div>
+<!--End Similar properties-->
+
+
+<!--Start footer-->
+<div class="footer">
+    <div class="shape-icon-footer">
+        <img src="assets/images/booking/instagram.png" alt="" class="icon-footer">
+        <img src="assets/images/booking/facebook.png" alt="" class="icon-footer">
+        <img src="assets/images/booking/twitter.png" alt="" class="icon-footer">
+    </div>
+    <p>@All Right Reserved</p>
+</div>
+
+<!--End footer-->
+
+</body>
+</html>
