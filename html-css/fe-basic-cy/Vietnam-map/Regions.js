@@ -15,6 +15,7 @@ const getAllProvince = () => {
             provinceTree(data);
             setupSearch(data);
             initializeMap();
+            populateProvinceDropdowns(data); //
         },
         error: function (error) {
             console.log("error: ", error);
@@ -186,3 +187,72 @@ const setupSearch = (data) => {
 };
 
 document.getElementById('yearSelect').addEventListener('change', filterRainfall);
+
+let routeControl = null;
+
+const populateProvinceDropdowns = (provinces) => {
+    const startProvinceSelect = document.getElementById('startProvince');
+    const endProvinceSelect = document.getElementById('endProvince');
+
+    provinces.forEach(region => {
+        region.provinces.forEach(province => {
+            const option = document.createElement('option');
+            option.value = province.code_name;
+            option.textContent = province.name;
+            startProvinceSelect.appendChild(option.cloneNode(true));
+            endProvinceSelect.appendChild(option);
+        });
+    });
+};
+
+const getProvinceByCodeName = (codeName) => {
+    return provinces.flatMap(region => region.provinces).find(p => p.code_name === codeName);
+};
+
+document.getElementById('calculateDistanceBtn').addEventListener('click', () => {
+    const startProvinceCode = document.getElementById('startProvince').value;
+    const endProvinceCode = document.getElementById('endProvince').value;
+
+    if (!startProvinceCode || !endProvinceCode) {
+        alert('Please select both start and end provinces.');
+        return;
+    }
+
+    const startProvince = getProvinceByCodeName(startProvinceCode);
+    const endProvince = getProvinceByCodeName(endProvinceCode);
+
+    if (!startProvince || !endProvince) {
+        alert('Invalid province selection.');
+        return;
+    }
+
+    const lat1 = startProvince.latitude;
+    const lon1 = startProvince.longitude;
+    const lat2 = endProvince.latitude;
+    const lon2 = endProvince.longitude;
+
+    if (routeControl) {
+        map.removeControl(routeControl);
+    }
+
+    routeControl = L.Routing.control({
+        waypoints: [
+            L.latLng(lat1, lon1),
+            L.latLng(lat2, lon2)
+        ],
+        routeWhileDragging: true
+    }).addTo(map);
+
+    const distance = calculateDistance(lat1, lon1, lat2, lon2);
+    alert(`Distance between ${startProvince.name} and ${endProvince.name}: ${distance.toFixed(2)} km`);
+});
+
+document.getElementById('clearRouteBtn').addEventListener('click', () => {
+    if (routeControl) {
+        map.removeControl(routeControl);
+        routeControl = null;
+    }
+    document.getElementById('startProvince').value = '';
+    document.getElementById('endProvince').value = '';
+    alert('Route and distance cleared.');
+});

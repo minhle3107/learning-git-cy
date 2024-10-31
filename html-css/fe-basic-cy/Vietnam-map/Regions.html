@@ -55,11 +55,34 @@
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <div class="position-sticky">
-                <input type="text" id="searchInput" class="form-control my-3" placeholder="Search provinces...">
+    <div class="position-sticky">
+        <div class="card my-2">
+            <div class="card-header">
+                Search Provinces
+            </div>
+            <div class="card-body">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search provinces...">
                 <div class="tree" id="regionTree"></div>
             </div>
-        </nav>
+        </div>
+
+        <div class="card my-2">
+            <div class="card-header">
+                Distance Calculation
+            </div>
+            <div class="card-body">
+                <select class="form-select me-2 my-2" id="startProvince">
+                    <option value="">---Select Start Province---</option>
+                </select>
+                <select class="form-select me-2 my-2" id="endProvince">
+                    <option value="">---Select End Province---</option>
+                </select>
+                <button class="btn btn-primary my-2" type="button" id="calculateDistanceBtn">Calculate Distance</button>
+                <button class="btn btn-danger my-2" type="button" id="clearRouteBtn">Clear Route</button>
+            </div>
+        </div>
+    </div>
+</nav>
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
             <div id="map"></div>
         </main>
@@ -71,6 +94,7 @@
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
 <script src="https://unpkg.com/togeojson"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 <script src="Regions.js"></script>
 </body>
 </html>
