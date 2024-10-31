@@ -1,10 +1,9 @@
 const BASE_URL = "http://localhost:8080/api/v1";
 let map;
 let markers = [];
-let kmlLayer;
-let provinces = []; // Define the provinces variable globally
-// let selectedYear = new Date().getFullYear(); // Default to the current year
-let selectedYear; // Default to the current year
+let kmlLayers = {}; // Store KML layers for each province
+let provinces = [];
+let selectedYear;
 
 const getAllProvince = () => {
     $.ajax({
@@ -12,7 +11,7 @@ const getAllProvince = () => {
         type: "GET",
         success: function (data) {
             console.log("data", data);
-            provinces = data; // Assign the API response to the provinces variable
+            provinces = data;
             provinceTree(data);
             setupSearch(data);
             initializeMap();
@@ -119,29 +118,29 @@ const toggleMarker = (checkbox) => {
 
         if (selectedYear) {
             marker.bindTooltip(`${name} - Rainfall in ${selectedYear}: ${rainfallData ? rainfallData.rainfall_amount : 'N/A'} mm`);
-
         } else {
             marker.bindTooltip(`${name}`);
-
         }
 
         marker.on('click', () => {
             if (marker.selected) {
-                map.removeLayer(kmlLayer);
+                map.removeLayer(kmlLayers[code_name]);
                 marker.selected = false;
             } else {
-                if (kmlLayer) {
-                    map.removeLayer(kmlLayer);
+                if (kmlLayers[code_name]) {
+                    map.removeLayer(kmlLayers[code_name]);
                 }
-                kmlLayer = omnivore.kml(`./kml/${code_name}.kml`).addTo(map);
+                kmlLayers[code_name] = omnivore.kml(`./kml/${code_name}.kml`).addTo(map);
                 marker.selected = true;
             }
         });
-        markers.push({checkbox, marker});
+        markers.push({ checkbox, marker });
     } else {
         const markerIndex = markers.findIndex(m => m.checkbox === checkbox);
         if (markerIndex !== -1) {
             map.removeLayer(markers[markerIndex].marker);
+            map.removeLayer(kmlLayers[code_name]);
+            delete kmlLayers[code_name];
             markers.splice(markerIndex, 1);
         }
     }
@@ -149,7 +148,7 @@ const toggleMarker = (checkbox) => {
 
 const filterRainfall = () => {
     selectedYear = parseInt(document.getElementById('yearSelect').value, 10);
-    markers.forEach(({checkbox}) => {
+    markers.forEach(({ checkbox }) => {
         toggleMarker(checkbox);
     });
 };
