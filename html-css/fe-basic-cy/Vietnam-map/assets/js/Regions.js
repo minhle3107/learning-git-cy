@@ -247,7 +247,7 @@ document.getElementById('calculateDistanceBtn').addEventListener('click', () => 
     const endProvinceCode = document.getElementById('endProvince').value;
 
     if (!startProvinceCode || !endProvinceCode) {
-        alert('Please select both start and end provinces.');
+        alert('Vui lòng chọn cả tỉnh bắt đầu và tỉnh kết thúc.');
         return;
     }
 
@@ -255,7 +255,7 @@ document.getElementById('calculateDistanceBtn').addEventListener('click', () => 
     const endProvince = getProvinceByCodeName(endProvinceCode);
 
     if (!startProvince || !endProvince) {
-        alert('Invalid province selection.');
+        alert('Lựa chọn tỉnh không hợp lệ.');
         return;
     }
 
@@ -283,5 +283,5 @@ document.getElementById('clearRouteBtn').addEventListener('click', () => {
     }
     document.getElementById('startProvince').value = '';
     document.getElementById('endProvince').value = '';
-    alert('Route and distance cleared.');
+    alert('Đã xóa lộ trình và khoảng cách.');
 });
