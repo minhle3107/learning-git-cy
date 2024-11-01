@@ -162,7 +162,7 @@ const toggleMarker = (checkbox) => {
                 if (kmlLayers[code_name]) {
                     map.removeLayer(kmlLayers[code_name]);
                 }
-                kmlLayers[code_name] = omnivore.kml(`./kml/${code_name}.kml`).addTo(map);
+                kmlLayers[code_name] = omnivore.kml(`./assets/kml/${code_name}.kml`).addTo(map);
                 marker.selected = true;
             }
         });
